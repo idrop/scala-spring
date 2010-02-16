@@ -34,4 +34,9 @@ class ModelTest {
     assertFalse(iou1 == iou2)
   }
 
+  @Test
+  def iouToString {
+    assertEquals("phil owes warren 10.0", IOU(phil, warren, 10).toString)
+  }
+
 }

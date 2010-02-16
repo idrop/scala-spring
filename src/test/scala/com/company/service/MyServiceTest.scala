@@ -14,14 +14,14 @@ class MyServiceTest {
     val phil = User("phil")
     val warren = User("warren")
 
-    myService.addNewIOU("phil","warren",10)
-    assertEquals(1, myService.allIOUs.length)
+    var ious = myService.addNewIOU("phil","warren",10)
+    assertEquals(1, ious.length)
 
-    myService.addNewIOU("phil","ed",10)
-    assertEquals(2, myService.allIOUs.length)
+    ious = myService.addNewIOU("phil","ed",10)
+    assertEquals(2, ious.length)
 
-    myService.addNewIOU("phil","warren",20)
-    assertEquals(2, myService.allIOUs.length)
+    ious = myService.addNewIOU("phil","warren",20)
+    assertEquals(2, ious.length)
 
 
   }

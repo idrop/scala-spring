@@ -4,18 +4,18 @@ import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
 import javax.servlet.http.HttpServletResponse
 import com.company.service.MyService
-import org.springframework.web.bind.annotation.{RequestParam, RequestMapping}
 import org.springframework.web.bind.annotation.RequestMethod._
 import org.springframework.stereotype.Controller
 import org.json.{JSONObject, JSONArray}
+import org.springframework.web.bind.annotation.{ResponseBody, RequestParam, RequestMapping}
 
 @Controller
 class MyController {
-  
+
   private val log = Logger.getLogger(classOf[MyController])
 
   @Autowired
-  var myService: MyService = _
+  protected var myService: MyService = _
 
   /**
    * Invoke at http://localhost:9090/magic/alive 
@@ -44,9 +44,9 @@ class MyController {
     res.setContentType("application/json")
     log.info("newIOU invoked")
 
-    myService.addNewIOU(ower, owed, amount)
+    var ious = myService.addNewIOU(ower, owed, amount)
 
-    val ious = myService.allIOUs
+    ious = ious.sortWith( (l,r) => l.amount > r.amount )
 
     val arr = new JSONArray
 

@@ -5,18 +5,13 @@ import com.company.model.{User, IOU}
 
 @Service
 class MyService {
+  
   private var ious: List[IOU] = Nil
 
-  def addNewIOU(ower: String, owed: String, amount: Double) {
-    require(amount > 0)
+  def addNewIOU(ower: String, owed: String, amount: Double) = {
     val newIOU = IOU(User(ower), User(owed), amount)
-
-
     ious = newIOU :: (ious filterNot (newIOU == _))
-
-
+    ious
   }
-
-  def allIOUs = ious
 
 }
