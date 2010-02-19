@@ -1,17 +1,19 @@
 package com.company.service
 
 import org.springframework.stereotype.Service
-import com.company.model.{User, IOU}
+import com.company.model._
 
 @Service
 class MyService {
   
   private var ious: List[IOU] = Nil
 
-  def addNewIOU(ower: String, owed: String, amount: Double) = {
-    val newIOU = IOU(User(ower), User(owed), amount)
+  def addNewIOU(ower: User, owed: User, amount: Double) = {
+    val newIOU = IOU(ower, owed, amount)
     ious = newIOU :: (ious filterNot (newIOU == _))
-    ious
+    newIOU
   }
+
+  def iousForUser(ower :User) = ious.filter(_.ower == ower)
 
 }
