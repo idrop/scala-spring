@@ -5,10 +5,12 @@ import com.company.model._
 import org.springframework.beans.factory.annotation.Autowired
 import javax.servlet.http.HttpServletResponse
 
-import org.springframework.web.bind.annotation.RequestMethod._
+
+import org.springframework.http.HttpStatus._
 import org.springframework.stereotype.Controller
 import org.json.{JSONObject, JSONArray}
-import org.springframework.web.bind.annotation.{ResponseBody, RequestParam, RequestMapping, PathVariable}
+import org.springframework.web.bind.annotation._
+import RequestMethod.{GET,POST} // relative import
 import org.springframework.web.bind.WebDataBinder
 
 @Controller
@@ -17,48 +19,43 @@ import org.springframework.web.bind.WebDataBinder
 class MyController(val myService: MyService) {
 
   /**
-   * Invoke at http://localhost:9090/magic/alive 
+   * Always useful to have an endpoint to ping
+   * Invoke at http://localhost:9090/magic/ious/alive
    */
-  @RequestMapping(method = Array(GET), value = Array("/alive"))
-  def alive(res: HttpServletResponse) {
-
-    res.setContentType("text/plain")
-    res.getWriter.print("alive")
-
-  }
+  @RequestMapping(method = Array(GET), value=Array("alive"))
+  @ResponseBody
+  def alive = "alive"
 
   /**
    * Creates or replaces an existing IOU.
+   * Invoked via a POST to http://localhost:9090/magic/ious
    */
   @RequestMapping(method = Array(POST))
+  @ResponseStatus(CREATED)
   def post(
     @RequestParam("ower") ower: String,
     @RequestParam("owed") owed: String,
     @RequestParam("amount") amount: Double) {
 
     myService.addNewIOU(User(ower), User(owed), amount)
-
   }
 
   /**
    * Creates or replaces an existing IOU.
    * Returns json array of current ious
-   * Invoked in index.html
+   * Invoked via a GET to http://localhost:9090/magic/ious
    */
   @RequestMapping(method = Array(GET), value = Array("{ower}"))
+  @ResponseBody
   def get(@PathVariable ower :String) = {
-
-    var ious = myService.iousForUser(User(ower))
-    ious = ious.sortWith( (l,r) => l.amount > r.amount )
-    ious2JSON(ious)
-
+    val ious = myService.iousForUser(User(ower))
+    ious2JSON(ious.sortWith( (l,r) => l.amount > r.amount ))
   }
 
 
   private def ious2JSON(ious :List[IOU]) = {
 
     val arr = new JSONArray
-
     ious foreach { iou =>
       val o = new JSONObject
       o put("ower",iou.ower.id)

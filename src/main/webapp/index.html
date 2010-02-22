@@ -3,44 +3,48 @@
     <head>
         <title>scala-spring webapp</title>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript">
+
 
             $(document).ready(function() {
 
-                $("#add").click(function(event) {
-                    event.preventDefault()
-                    $.post("/magic/newIOU", {
+                $("#button").click(function(event) {
+                    $.post("/magic/ious",
+                    {
                         ower : $("#ower").val(),
                         owed : $("#owed").val(),
                         amount : $("#amount").val()
                     },
-                    writeIOUs)
+                    getJson
+                )
                 })
             })
 
-            function writeIOUs(jsonText) {
-                var ious = eval('(' + jsonText + ')')
+            function getJson() {
+                $.getJSON("/magic/ious/" + $("#ower").val(), writeIOUs)
+            }
+
+            function writeIOUs(ious) {
                 var iousDiv = $("#ious")
                 iousDiv.empty()
-                for (var i = 0; i < ious.length; i++) {
-                    var iou = ious[i]
+                $.each(ious, function(i,iou) {
                     iousDiv.append(iou.ower + " owes " + iou.owed + " the sum of $" + iou.amount).append("<br/>")
                 }
-            }
+            )}
 
 
         </script>
 
     </head>
     <body>
-        <a href="magic/alive">Alive Test</a>
+        <a href="magic/ious/alive">Alive Test</a>
 
         <h1>Add An IOU</h1>
         <input id="ower" type="text"> owes
         <input id="owed" type="text"> this amount:
         <input id="amount" type="text">
-        <input id="add" type="submit">
+        <input id="button" type="submit">
 
         <h1>All IOUs</h1>
         <div id="ious"></div>
