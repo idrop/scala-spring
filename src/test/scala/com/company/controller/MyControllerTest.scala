@@ -10,9 +10,9 @@ class MyControllerTest {
 
   @Test
   def putAndGetAnIOU = {
-    controller.post("aaa","bbb",10d)
-    val json1 = controller.get("aaa")
-    assertEquals("""[{"amount":10,"ower":"aaa","owed":"bbb"}]""",json1)
+    controller.post("phil","warren",10d)
+    val json = controller.get("phil")
+    assertEquals("""[{"amount":10,"ower":"phil","owed":"warren"}]""",json)
   }
 
   @Test

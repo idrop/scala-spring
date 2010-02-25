@@ -14,6 +14,6 @@ class MyService {
     newIOU
   }
 
-  def iousForUser(ower :User) = ious.filter(_.ower == ower)
+  def iousForUser(u: User) = ious.filter(_.ower == u)
 
 }

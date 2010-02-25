@@ -104,13 +104,26 @@
             <artifactId>json</artifactId>
             <version>20080701</version>
         </dependency>
+
+        <!-- testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.4</version>
             <scope>testing</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.scala-tools.testing</groupId>
+            <artifactId>specs_2.8.0.Beta1</artifactId>
+            <version>1.6.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.webdriver</groupId>
+            <artifactId>webdriver-firefox</artifactId>
+            <version>0.9.7376</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
