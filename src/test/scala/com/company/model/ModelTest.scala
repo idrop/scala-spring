@@ -14,7 +14,6 @@ class ModelTest {
     assertEquals(phil,User("phil"))
   }
 
-
   @Test
   def userNonEquality {
     assertFalse(phil == warren)

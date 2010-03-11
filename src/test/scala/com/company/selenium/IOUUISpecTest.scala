@@ -1,13 +1,12 @@
 package com.company.selenium
 
+import _root_.org.specs.SpecificationWithJUnit
 import com.company.util.BrowserSpeak
 import BrowserSpeak._
-import org.specs.Specification
-
 /**
  * taken from post by Pavol Vaskovic on newsgroup scala-user@listes.epfl.ch
  */
-object IOUUISpecTest extends Specification {
+object IOUUISpecTest extends SpecificationWithJUnit {
 
   def beAbleTo = addToSusVerb("beAbleTo")
   

@@ -10,18 +10,20 @@
             $(document).ready(function() {
 
                 $("#button").click(function(event) {
-                    $.post("/magic/ious",
-                    {
-                        ower : $("#ower").val(),
-                        owed : $("#owed").val(),
-                        amount : $("#amount").val()
-                    },
-                    getJson
-                )
+
+                    $.ajax({
+                        url : "/magic/ious",
+                        type : "post",
+                        data : {ower : $("#ower").val(), owed : $("#owed").val(), amount : $("#amount").val()},
+                        dataType : "json",
+                        success : getData,
+                        error : errorWithPost
+                    })
+
                 })
             })
 
-            function getJson() {
+            function getData() {
                 $.getJSON("/magic/ious/" + $("#ower").val(), writeIOUs)
             }
 
@@ -32,6 +34,12 @@
                     iousDiv.append(iou.ower + " owes " + iou.owed + " the sum of $" + iou.amount).append("<br/>")
                 }
             )}
+
+            function errorWithPost() {
+                var iousDiv = $("#ious")
+                iousDiv.empty()
+                iousDiv.append("An error occured with this request")
+            }
 
 
         </script>
