@@ -1,4 +1,4 @@
-package com.company.util
+package com.company.selenium
 
 import org.openqa.selenium.{WebElement, By}
 import org.openqa.selenium.firefox.FirefoxDriver

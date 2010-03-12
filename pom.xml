@@ -11,12 +11,10 @@
     <url>http://github.com/idrop/scala-spring</url>
     <name>scala-spring</name>
     <description>A maven project structure for a scala spring webapp</description>
-
     <properties>
         <scala.version>2.8.0.Beta1</scala.version>
         <spring.version>3.0.0.RELEASE</spring.version>
     </properties>
-
     <repositories>
         <repository>
             <id>scala-tools.org</id>
@@ -24,7 +22,6 @@
             <url>http://scala-tools.org/repo-releases</url>
         </repository>
     </repositories>
-
     <pluginRepositories>
         <pluginRepository>
             <id>scala-tools.org</id>
@@ -32,11 +29,9 @@
             <url>http://scala-tools.org/repo-releases</url>
         </pluginRepository>
     </pluginRepositories>
-
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
-
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -52,7 +47,6 @@
                     <scanIntervalSeconds>20</scanIntervalSeconds>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.scala-tools</groupId>
                 <artifactId>maven-scala-plugin</artifactId>
@@ -81,7 +75,6 @@
             </plugin>
         </plugins>
     </build>
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -125,5 +118,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

@@ -1,15 +1,15 @@
 package com.company.selenium
 
-import _root_.org.specs.SpecificationWithJUnit
-import com.company.util.BrowserSpeak
+import org.specs.SpecificationWithJUnit
 import BrowserSpeak._
+
 /**
  * taken from post by Pavol Vaskovic on newsgroup scala-user@listes.epfl.ch
  */
 object IOUUISpecTest extends SpecificationWithJUnit {
 
   def beAbleTo = addToSusVerb("beAbleTo")
-  
+
   val iouUrl = "localhost:9090"
 
   "IOU App User" should beAbleTo {

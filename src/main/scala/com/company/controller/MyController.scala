@@ -1,6 +1,5 @@
 package com.company.controller
 
-import _root_.javax.servlet.http.HttpServletResponse
 import com.company.service.MyService
 import com.company.model._
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,19 +15,11 @@ import RequestMethod.{GET, POST} // relative import
 class MyController(val myService: MyService) {
 
   /**
-   * Always useful to have an endpoint to ping
-   * Invoke at http://localhost:9090/magic/ious/alive
-   */
-  @RequestMapping(method = Array(GET), value = Array("alive"))
-  @ResponseBody
-  def alive = "alive at %s".format(new java.util.Date)
-
-  /**
    * Creates or replaces an existing IOU.
    * Invoked via a POST to http://localhost:9090/magic/ious
    */
   @RequestMapping(method = Array(POST))
-  @ResponseStatus(CREATED)
+  @ResponseStatus(CREATED) // 201
   def post(
           @RequestParam("ower") ower: String,
           @RequestParam("owed") owed: String,
@@ -39,7 +30,7 @@ class MyController(val myService: MyService) {
 
   /**
    * Returns ordered json array of ious for ower
-   * Invoked via a GET to http://localhost:9090/magic/ious
+   * Invoked via a GET to http://localhost:9090/magic/ious/{ower}
    */
   @RequestMapping(method = Array(GET), value = Array("{ower}"))
   @ResponseBody
@@ -47,6 +38,14 @@ class MyController(val myService: MyService) {
     val ious = myService.iousForUser(User(ower))
     ious2JSON(ious.sortWith((l, r) => l.amount > r.amount))
   }
+
+  /**
+   * Always useful to have an endpoint to ping
+   * Invoke at http://localhost:9090/magic/ious/alive
+   */
+  @RequestMapping(method = Array(GET), value = Array("alive"))
+  @ResponseBody
+  def alive = "alive at %s".format(new java.util.Date)
 
 
   private def ious2JSON(ious: List[IOU]) = {
