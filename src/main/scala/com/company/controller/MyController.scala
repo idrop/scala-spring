@@ -12,7 +12,7 @@ import RequestMethod.{GET, POST} // relative import
 @Controller
 @Autowired
 @RequestMapping(Array("/ious"))
-class MyController(val myService: MyService) {
+class MyController(myService: MyService) {
 
   /**
    * Creates or replaces an existing IOU.

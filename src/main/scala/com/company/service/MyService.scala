@@ -10,7 +10,7 @@ class MyService {
 
   def addNewIOU(ower: User, owed: User, amount: Double) = {
     val newIOU = IOU(ower, owed, amount)
-    ious = newIOU :: (ious filterNot (newIOU == _))
+    ious = newIOU :: ious.filterNot(newIOU == _)
     newIOU
   }
 
