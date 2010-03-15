@@ -45,6 +45,14 @@
                         </connector>
                     </connectors>
                     <scanIntervalSeconds>20</scanIntervalSeconds>
+                    <scanTargetPatterns>
+                        <scanTargetPattern>
+                            <directory>src/main/scala</directory>
+                            <includes>
+                                <include>**/*.scala</include>
+                            </includes>
+                        </scanTargetPattern>
+                    </scanTargetPatterns>
                 </configuration>
             </plugin>
             <plugin>
