@@ -9,7 +9,7 @@ class MyControllerTest {
   val controller = new MyController(new MyService)
 
   @Test
-  def putAndGetAnIOU = {
+  def postAndGetAnIOU = {
     controller.post("phil","warren",10d)
     val json = controller.get("phil")
     assertEquals("""[{"amount":10,"ower":"phil","owed":"warren"}]""",json)
