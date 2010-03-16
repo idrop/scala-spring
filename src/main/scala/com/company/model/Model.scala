@@ -16,7 +16,7 @@ case class IOU(ower: User, owed: User, amount: Double) {
     case _ => false
   }
 
-  override def hashCode = 41 * (41 + ower.hashCode) + owed.hashCode
+  override def hashCode = (41 * (41 + ower.hashCode)) + owed.hashCode
 
   override def toString = "%s owes %s %s".format(ower, owed, amount)
 
