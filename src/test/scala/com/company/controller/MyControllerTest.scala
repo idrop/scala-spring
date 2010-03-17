@@ -10,7 +10,7 @@ class MyControllerTest {
   val controller = new MyController(new MyService)
 
   @Test
-  def postAndGetAnIOU = {
+  def postAndGetIOUs = {
     val phil = User("phil")
     val warren = User("warren")
     controller.post(phil, warren, 10d)
