@@ -7,6 +7,7 @@ case class User(id: String) {
 case class IOU(ower: User, owed: User, amount: Double) {
 
   require(amount > 0)
+  require(ower != owed)
 
   /**
    * One IOU equals another if ower and owed are the same
