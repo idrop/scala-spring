@@ -24,7 +24,7 @@ object IOUUISpecTest extends SpecificationWithJUnit {
       to field "owed" enter "warren"
       to field "amount" enter "12"
       click button "button"
-      page textAt ("//div[@id='ious']") must_== "phil owes warren the sum of $12"
+      page textAt ("//div[@id='ious']") must_== "phil owes warren $12"
     }
 
   }

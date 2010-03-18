@@ -37,7 +37,6 @@
             function writeIOUs(ious) {
                 var iousDiv = $("#ious")
                 iousDiv.empty()
-                iousDiv.append("<H1>All IOUs</H1>")
                 $.each(ious, function(i,iou) {
                     iousDiv.append(iou.ower + " owes " + iou.owed + " $" + iou.amount).append("<br/>")
                 }
