@@ -9,6 +9,16 @@ class ModelTest {
   val phil = User("phil")
   val warren = User("warren")
 
+  @Test(expected=classOf[IllegalArgumentException])
+  def negativeAmountDisallowed {
+    IOU(phil, warren, -1)
+  }
+
+  @Test(expected=classOf[IllegalArgumentException])
+  def owedCannotBeOwer {
+    IOU(phil, phil, 1)
+  }
+
   @Test
   def userEquality {
     assertEquals(phil,User("phil"))
