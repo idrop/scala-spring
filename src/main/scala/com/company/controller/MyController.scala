@@ -16,14 +16,6 @@ import org.json.{JSONObject, JSONArray}
 class MyController(myService: MyService) {
 
   /**
-   * convert a String user id into a sanitized User object
-   */
-  @InitBinder
-  def mapInput(binder: WebDataBinder) {
-    binder.registerCustomEditor(classOf[User], new UserEditor)
-  }
-
-  /**
    * Creates or replaces an existing IOU.
    * Invoked via a POST to http://localhost:9090/magic/ious
    */
@@ -55,6 +47,14 @@ class MyController(myService: MyService) {
   @RequestMapping(method = Array(GET), value = Array("alive"))
   @ResponseBody
   def alive = "alive at %s".format(new java.util.Date)
+
+  /**
+   * convert a String user id into a sanitized User object
+   */
+  @InitBinder
+  def mapInput(binder: WebDataBinder) {
+    binder.registerCustomEditor(classOf[User], new UserEditor)
+  }
 
 
   private def ious2JSON(ious: List[IOU]) = {

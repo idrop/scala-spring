@@ -4,11 +4,10 @@
         <title>scala-spring webapp</title>
         <style type="text/css">
             body {
-                font: 125% arial, sans-serif;
+                font: 80% arial, sans-serif;
                 line-height: 1.88889;
                 color: #555753;
                 }
-
         </style>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript">
@@ -38,29 +37,24 @@
                 var iousDiv = $("#ious")
                 iousDiv.empty()
                 $.each(ious, function(i,iou) {
-                    iousDiv.append(iou.ower + " owes " + iou.owed + " $" + iou.amount).append("<br/>")
+                    iousDiv.append(iou.ower + " owes " + iou.owed + " $" + iou.amount).append("<br/>").css("color","green")
                 }
             )}
 
             function errorWithPost() {
                 var iousDiv = $("#ious")
                 iousDiv.empty()
-                iousDiv.append("An error occured with this request")
+                iousDiv.append("An error occured with this request").css("color","red")
             }
-
-
         </script>
-
     </head>
     <body>
         <a href="magic/ious/alive">Alive Test</a>
-
         <h1>Add An IOU</h1>
         <input id="ower" type="text"> owes
         <input id="owed" type="text"> this amount $:
         <input id="amount" type="text">
         <input id="button" type="submit">
-
         <div id="ious"></div>
     </body>
 </html>

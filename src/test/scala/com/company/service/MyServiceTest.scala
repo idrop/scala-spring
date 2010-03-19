@@ -2,7 +2,7 @@ package com.company.service
 
 import org.junit.Assert._
 import org.junit._
-import com.company.model.{User, IOU}
+import com.company.model.{User}
 
 @Test
 class MyServiceTest {
