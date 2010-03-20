@@ -31,7 +31,7 @@ class MyController(myService: MyService) {
 
   /**
    * Returns ordered json array of ious for ower
-   * Invoked via a GET to http://localhost:9090/magic/ious/  { ower }
+   * Invoked via a GET to http://localhost:9090/magic/ious/{ower}
    */
   @RequestMapping(method = Array(GET), value = Array("{ower}"))
   @ResponseBody
@@ -39,14 +39,6 @@ class MyController(myService: MyService) {
     val ious = myService.iousForUser(ower)
     ious2JSON(ious.sortWith((l, r) => l.amount > r.amount))
   }
-
-  /**
-   * Always useful to have an endpoint to ping
-   * Invoke at http://localhost:9090/magic/ious/alive
-   */
-  @RequestMapping(method = Array(GET), value = Array("alive"))
-  @ResponseBody
-  def alive = "alive at %s".format(new java.util.Date)
 
   /**
    * convert a String user id into a sanitized User object
