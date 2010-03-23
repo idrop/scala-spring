@@ -6,20 +6,18 @@ import com.company.model._
 @Service
 class MyService {
 
-  private var ious: List[IOU] = Nil
+  Storage start
 
   def addNewIOU(ower: User, owed: User, amount: Double) = {
     val iou = IOU(ower, owed, amount)
-    ious synchronized {
-      ious = iou :: (ious filterNot (_ == iou))
-    }
+    Storage ! PutIOU(iou) // async
     iou
   }
 
   def iousForUser(u: User) = {
-    ious synchronized {
-      ious filter (_.ower == u)
-    }
+    val future = Storage !! GetIOUs(u)
+    future().asInstanceOf[List[IOU]]
   }
 
 }
+

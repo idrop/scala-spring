@@ -11,7 +11,7 @@ class UserEditor extends PropertyEditorSupport {
 
   override def setAsText(text: String) = {
     require(text != null)
-    require(!text.isEmpty)
+    require(text.nonEmpty)
     // sanitize html input
     val cleaned = mapping.foldLeft(text)((text, kv) => text.replaceAll(kv._1, kv._2))
     setValue(User(cleaned))

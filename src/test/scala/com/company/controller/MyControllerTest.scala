@@ -1,10 +1,9 @@
 package com.company.controller
 
+import com.company.service.{Storage, MyService}
+import org.junit.{Before, Test}
 import com.company.model.User
 import org.junit.Assert._
-import org.junit.Test
-import com.company.service.MyService
-
 class MyControllerTest {
 
   val controller = new MyController(new MyService)
@@ -13,6 +12,9 @@ class MyControllerTest {
   val warren = User("warren")
   val julie = User("julie")
   val shaun = User("shaun")
+
+  @Before
+  def before = Storage.clear
 
   @Test
   def postAndGetIOUs = {

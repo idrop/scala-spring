@@ -6,13 +6,16 @@ import com.company.model.{User}
 
 @Test
 class MyServiceTest {
-  
+
   val myService = new MyService
 
   val aaa = User("aaa")
   val bbb = User("bbb")
   val ccc = User("ccc")
   val ddd = User("ddd")
+
+  @Before
+  def before = Storage clear
 
   @Test
   def addNewIOU {
@@ -33,9 +36,10 @@ class MyServiceTest {
   @Test
   def iouReplaced {
     myService.addNewIOU(aaa, bbb, 10d)
-    myService.addNewIOU(aaa, bbb, 10d)
+    myService.addNewIOU(aaa, bbb, 11d)
     val ious = myService.iousForUser(aaa)
     assertEquals(1, ious.length)
+    assertEquals(11d, ious.head.amount, 0.0)
   }
 
   @Test
@@ -55,7 +59,7 @@ class MyServiceTest {
   }
 
   @Test
-  def noIOUSExist {
+  def noIOUsExist {
     val ious = myService.iousForUser(ccc)
     assertEquals(0, ious.length)
   }

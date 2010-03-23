@@ -1,5 +1,6 @@
 package com.company.selenium
 
+import com.company.service.Storage
 import org.specs.SpecificationWithJUnit
 import BrowserSpeak._
 
@@ -14,7 +15,7 @@ object IOUUISpecTest extends SpecificationWithJUnit {
 
   "IOU App User" should beAbleTo {
 
-    doBefore {startBrowser}
+    doBefore {startBrowser; Storage.clear}
     doAfter {closeBrowser}
 
     "see a new iou added" in {

@@ -31,7 +31,7 @@ class MyController(myService: MyService) {
 
   /**
    * Returns ordered json array of ious for ower
-   * Invoked via a GET to http://localhost:9090/magic/ious/{ower}
+   * Invoked via a GET to http://localhost:9090/magic/ious/  { ower }
    */
   @RequestMapping(method = Array(GET), value = Array("{ower}"))
   @ResponseBody
